@@ -7,6 +7,7 @@ General algorithm for the main portion of your program (Main.java)
 
 MemorySequence Object:
 
+Box Layout:
 
     | 01 | 02 | 03 | 04 |
     |----|----|----|----|
@@ -17,7 +18,26 @@ MemorySequence Object:
     | 13 | 14 | 15 | 16 |
 
 
+    InstanceVariables:
+        private String[][] boxNumbers
+        private final String DIV_LINE = "|----|----|----|----|"
+
 
     Constructor:
-        MemorySequence(String one, String two, ... String sixteen);
-            will hold layout of
+        MemorySequence()
+            initialize and set the arrays of boxNumbers and blank to their respective values
+
+    Methods:
+        private printArray(String[][] array) return String
+            will print out the memory tiles with the values of the 2D array in the parameter
+
+
+        emptyBox() return String
+            will print out the memory tiles with the numbers in them
+
+        printBox() return String
+            will print out the memory tiles with the numbers in them
+
+        lightBox() void return type
+            will cause one of the tiles (random) to "light up" (it will just be colored text)
+             ** in the memory sequence game I will have to indicate which box is chosen
