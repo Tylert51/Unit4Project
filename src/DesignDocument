@@ -8,12 +8,16 @@ General algorithm for the main portion of your program (Main.java)
 MemorySequence Object:
 
 
-    | Q | W | E | R | T |    | Y | U | I | O | P |
-    |---|---|---|---|---|    |---|---|---|---|---|
-    | A | S | D | F | G |    | H | J | K | L | ; |
-    |---|---|---|---|---|    |---|---|---|---|---|
-    | Z | X | C | V | B |    | N | M | M | , | . |
-    |---|---|---|---|---|    |---|---|---|---|---|
+    | 01 | 02 | 03 | 04 |
+    |----|----|----|----|
+    | 05 | 06 | 07 | 08 |
+    |----|----|----|----|
+    | 09 | 10 | 11 | 12 |
+    |----|----|----|----|
+    | 13 | 14 | 15 | 16 |
+
+
 
     Constructor:
-        MemoryLayout(int a...
+        MemorySequence(String one, String two, ... String sixteen);
+            will hold layout of
