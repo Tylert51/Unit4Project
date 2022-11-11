@@ -7,12 +7,12 @@ public class MemorySequence {
    public MemorySequence() {
       String[][] boxNumbers = new String[4][4];
       int count = 1;
-      for (int row = 0; row < boxNumbers.length; row++) {
-         for (int column = 0; column < boxNumbers[0].length; column++) {
+      for (int column = 0; column < boxNumbers.length; column++) {
+         for (int row = 0; row < boxNumbers[0].length; row++) {
             if (count < 10) {
-               boxNumbers[row][column] = "0" + count;
+               boxNumbers[column][row] = "0" + count;
             } else {
-               boxNumbers[row][column] = "" + count;
+               boxNumbers[column][row] = "" + count;
             }
 
             count++;
@@ -21,9 +21,9 @@ public class MemorySequence {
       this.boxNumbers = boxNumbers;
 
       String[][] blank = new String[4][4];
-      for (int row = 0; row < blank.length; row++) {
-         for (int column = 0; column < blank[0].length; column++) {
-            blank[row][column] = "  ";
+      for (int column = 0; column < blank.length; column++) {
+         for (int row = 0; row < blank[0].length; row++) {
+            blank[column][row] = "  ";
          }
       }
       this.blank = blank;
@@ -32,9 +32,9 @@ public class MemorySequence {
    private String printArrayBox (String[][] array) {
       String box = DIV_LINE + "\n";
 
-      for (int row = 0; row < array.length; row++) {
-         for (int column = 0; column < array[0].length; column++) {
-            box += "| " + array[row][column] + " ";
+      for (int column = 0; column < array.length; column++) {
+         for (int row = 0; row < array[0].length; row++) {
+            box += "| " + array[column][row] + " ";
          }
          box += "|\n" + DIV_LINE + "\n";
       }
