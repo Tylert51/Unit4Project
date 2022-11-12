@@ -4,8 +4,8 @@ public class MemorySequence {
    private String[][] blank;
    private final String DIV_LINE = "|----|----|----|----|";
 
-   public MemorySequence() {
-      String[][] boxNumbers = new String[4][4];
+   public MemorySequence(int c, int r) {
+      String[][] boxNumbers = new String[c][r];
       int count = 1;
       for (int column = 0; column < boxNumbers.length; column++) {
          for (int row = 0; row < boxNumbers[0].length; row++) {
@@ -19,7 +19,9 @@ public class MemorySequence {
          }
       }
       this.boxNumbers = boxNumbers;
+   }
 
+   public MemorySequence() {
       String[][] blank = new String[4][4];
       for (int column = 0; column < blank.length; column++) {
          for (int row = 0; row < blank[0].length; row++) {
