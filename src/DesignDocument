@@ -9,6 +9,7 @@ MemorySequence Object:
 
 Box Layout:
 
+    |----|----|----|----|
     | 01 | 02 | 03 | 04 |
     |----|----|----|----|
     | 05 | 06 | 07 | 08 |
@@ -16,28 +17,38 @@ Box Layout:
     | 09 | 10 | 11 | 12 |
     |----|----|----|----|
     | 13 | 14 | 15 | 16 |
+    |----|----|----|----|
 
 
     InstanceVariables:
         private String[][] boxNumbers
+        private String[][] blank
         private final String DIV_LINE = "|----|----|----|----|"
+        private int columns
+        private int rows
+        private final String ANSI_RESET = "\u001B[0m"
+        private final String ANSI_BLUE = "\u001B[34m"
+        private String sequence
 
 
     Constructor:
+        MemorySequence(int c, int r)
+            initialize and set the arrays of boxNumbers as well as blank according the the number of columns(c) and rows(r) given
         MemorySequence()
-            initialize and set the arrays of boxNumbers and blank to their respective values
+            initialize and set the arrays of boxNumbers as well as blank to their default values (4x4 grid)
 
     Methods:
-        private printArray(String[][] array) return String
+        private printBox(String[][] array) return String
             will print out the memory tiles with the values of the 2D array in the parameter
 
 
         emptyBox() return String
             will print out the memory tiles with the numbers in them
 
-        printBox() return String
+        numBox() return String
             will print out the memory tiles with the numbers in them
 
-        lightBox() void return type
+        lightBox() String return type
             will cause one of the tiles (random) to "light up" (it will just be colored text)
              ** in the memory sequence game I will have to indicate which box is chosen
+             ** will also save the sequence so the user can input it

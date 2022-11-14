@@ -1,8 +1,18 @@
 public class MemorySequenceRunner {
     public static void main(String[] args) {
-        MemorySequence game = new MemorySequence();
-        MemorySequence game2 = new MemorySequence(4,4);
-        System.out.print(game.emptyBox());
-        System.out.print(game.printBox());
+        MemorySequence customize = new MemorySequence(5,5);
+        MemorySequence defaultBox = new MemorySequence();
+
+
+        System.out.print(customize.numBox());
+        System.out.println("\n\n\n\n");
+        System.out.print(customize.emptyBox());
+        System.out.println("\n\n\n\n");
+
+        System.out.println(customize.lightBox());
+        System.out.println("\n\n\n\n");
+        System.out.println(customize.emptyBox());
+        System.out.println("\n\n\n\n");
+        System.out.println(customize.lightBox());
     }
 }
