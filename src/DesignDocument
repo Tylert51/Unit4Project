@@ -28,7 +28,9 @@ Box Layout:
         private int rows
         private final String ANSI_RESET = "\u001B[0m"
         private final String ANSI_BLUE = "\u001B[34m"
-        private String sequence
+        private static ArrayList<String> sequence = new ArrayList<String>()
+        private static ArrayList<String> userInputAns = new ArrayList<String>()
+        private int score
 
 
     Constructor:
@@ -52,3 +54,37 @@ Box Layout:
             will cause one of the tiles (random) to "light up" (it will just be colored text)
              ** in the memory sequence game I will have to indicate which box is chosen
              ** will also save the sequence so the user can input it
+
+        public void addInput(String input)     void return type
+            will add the number that that user inputs to an array list
+
+        public boolean gameRunning()    boolean return value
+            will return if the game is still running (when the user gets the sequence wrong the game is over and that is when this value is false)
+
+        public static void setScore()   void return value
+            will set the score to the current length of the sequence if the user gets it correct
+
+        toString()    returns a String
+            **to be decided
+
+
+Main Runner Class:
+    ask user if they want to play competitive or practice mode
+        if play practice, they can choose between setting the size of their own grid or using a default 4x4 grid
+            they will also be met with a question if they want to practice a certain sequence length or just play the default way
+        will display the grid with all the numbers in them to show the user which box is which
+        then display a sequence with a length of one (default way)
+        if they get it correct, the sequence length increases by one (default way)
+            will print their score at the end
+            will print their personal best as well based on the name
+        if they select their own way, they are asked to input the length of the desired sequence and a sequence of that length will be displayed
+            will print if they got it correct or not
+
+        if they play competitive they will only be able to play default play (sequence increases by one each round)
+            they will be able to save their score with their name and get a chance to be in the leaderboard (top 5)
+
+
+    methods:
+        public static boolean inRange(int num, int lower, int higher)
+            will return if the number is in between the lower and higher numbers
+

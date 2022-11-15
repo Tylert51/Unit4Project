@@ -1,14 +1,17 @@
+import java.util.ArrayList;
 
 public class MemorySequence {
 
    private String[][] boxNumbers;
    private String[][] blank;
-   private int columns = 4;
-   private int rows = 4;
+   private int columns;
+   private int rows;
    private final String DIV_LINE = "|----";
    private final String ANSI_RESET = "\u001B[0m";
    private final String ANSI_BLUE = "\u001B[34m";
-   private String sequence;
+   private static ArrayList<String> sequence = new ArrayList<String>();
+   private static ArrayList<String> userInputAns = new ArrayList<String>();
+   private int score = 0;
 
    public MemorySequence(int c, int r) {
       columns = c;
@@ -38,7 +41,9 @@ public class MemorySequence {
    }
 
       public MemorySequence() {
-         String[][] boxNumbers = new String[4][4];
+      columns = 4;
+      rows = 4;
+      String[][] boxNumbers = new String[4][4];
          int count = 1;
          for (int column = 0; column < boxNumbers.length; column++) {
             for (int row = 0; row < boxNumbers[0].length; row++) {
@@ -102,14 +107,29 @@ public class MemorySequence {
 
       int ranCol = (int) (Math.random() * columns);
       int ranRow = (int) (Math.random() * rows);
-      int boxNum = ((ranCol-1) * columns) + ranRow;
-
-
+      int boxNum = (ranCol * columns) + ranRow + 1;
+      sequence.add("" + boxNum);
 
       blank2[ranCol][ranRow] = ANSI_BLUE + "XX" + ANSI_RESET;
 
       return printBox(blank2);
    }
 
+   public static void addInput(String input) {
+      if (!(input.equals("done"))) {
+         int num = Integer.parseInt(input);
+         userInputAns.add(num + "");
+      }
+   }
 
+   public static boolean gameRunning() {
+      return userInputAns.equals(sequence);
+   }
+
+   public void setScore(int score) {
+      this.score = score;
+   }
+   public String toString() {
+      return "";
+   }
 }
