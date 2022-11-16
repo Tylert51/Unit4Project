@@ -64,6 +64,9 @@ Box Layout:
         public static void setScore()   void return value
             will set the score to the current length of the sequence if the user gets it correct
 
+        public static void setUserInputAns(ArrayList<String> userAns)      void return type
+            will set the sequence that the user enters to the ArrayList called userInputAns
+
         toString()    returns a String
             **to be decided
 

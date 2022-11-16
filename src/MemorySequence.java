@@ -126,6 +126,10 @@ public class MemorySequence {
       return userInputAns.equals(sequence);
    }
 
+   public static void setUserInputAns(ArrayList<String> userAns) {
+      userInputAns = userAns;
+   }
+
    public void setScore(int score) {
       this.score = score;
    }
