@@ -55,9 +55,6 @@ Box Layout:
              ** in the memory sequence game I will have to indicate which box is chosen
              ** will also save the sequence so the user can input it
 
-        public void addInput(String input)     void return type
-            will add the number that that user inputs to an array list
-
         public boolean gameRunning()    boolean return value
             will return if the game is still running (when the user gets the sequence wrong the game is over and that is when this value is false)
 

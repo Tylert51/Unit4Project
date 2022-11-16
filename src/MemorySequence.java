@@ -9,6 +9,10 @@ public class MemorySequence {
    private final String DIV_LINE = "|----";
    private final String ANSI_RESET = "\u001B[0m";
    private final String ANSI_BLUE = "\u001B[34m";
+   private final String ANSI_RED = "\u001B[31m";
+   private final String ANSI_YELLOW = "\u001B[33m";
+   private final String ANSI_CYAN = "\u001B[36m";
+   private final String ANSI_PURPLE = "\u001B[35m";
    private static ArrayList<String> sequence = new ArrayList<String>();
    private static ArrayList<String> userInputAns = new ArrayList<String>();
    private int score = 0;
@@ -110,16 +114,9 @@ public class MemorySequence {
       int boxNum = (ranCol * columns) + ranRow + 1;
       sequence.add("" + boxNum);
 
-      blank2[ranCol][ranRow] = ANSI_BLUE + "XX" + ANSI_RESET;
+      blank2[ranCol][ranRow] = ANSI_CYAN + "XX" + ANSI_RESET;
 
       return printBox(blank2);
-   }
-
-   public static void addInput(String input) {
-      if (!(input.equals("done"))) {
-         int num = Integer.parseInt(input);
-         userInputAns.add(num + "");
-      }
    }
 
    public static boolean gameRunning() {

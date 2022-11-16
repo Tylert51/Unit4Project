@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -50,7 +51,7 @@ public class MemorySequenceRunner {
                         for (int rounds = 1; rounds <= seqLen; rounds++) {
                             System.out.println(gameCustom.lightBox());
                             Thread.sleep(2000);
-                            System.out.println("\n\n\n\n\n" + gameCustom.emptyBox());
+                            System.out.println("\n\n\n\n\n" + gameCustom.emptyBox() + "\n\n\n\n\n");
                             Thread.sleep(2000);
                         }
                         System.out.print("Enter the box number of the first tile that lit up: ");
@@ -62,9 +63,9 @@ public class MemorySequenceRunner {
                         MemorySequence.setUserInputAns(answers);
                         score++;
                     }
-                    gameCustom.setScore(score-1);
+                    score--;
+                    gameCustom.setScore(score);
                 }
-
 
 
             } else {
@@ -80,6 +81,15 @@ public class MemorySequenceRunner {
 
     public static boolean inRange(int num, int lower, int higher) {
         return (num >= lower) && (num <= higher);
+    }
+
+    public static void clear() {
+        try {
+            if (System.getProperty("os.name").contains("Windows"))
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            else
+                Runtime.getRuntime().exec("clear");
+        } catch (IOException | InterruptedException ex) {}
     }
 
 }
