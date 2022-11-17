@@ -15,7 +15,9 @@ public class MemorySequence {
    private final String ANSI_PURPLE = "\u001B[35m";
    private static ArrayList<String> sequence = new ArrayList<String>();
    private static ArrayList<String> userInputAns = new ArrayList<String>();
-   private int score = 0;
+   private static int score;
+   private static boolean defaultSeq = true;
+   private static int seqLen;
 
    public MemorySequence(int c, int r) {
       columns = c;
@@ -45,9 +47,9 @@ public class MemorySequence {
    }
 
       public MemorySequence() {
-      columns = 4;
-      rows = 4;
-      String[][] boxNumbers = new String[4][4];
+      columns = 5;
+      rows = 5;
+      String[][] boxNumbers = new String[columns][rows];
          int count = 1;
          for (int column = 0; column < boxNumbers.length; column++) {
             for (int row = 0; row < boxNumbers[0].length; row++) {
@@ -62,7 +64,7 @@ public class MemorySequence {
          }
          this.boxNumbers = boxNumbers;
 
-         String[][] blank = new String[4][4];
+         String[][] blank = new String[columns][rows];
          for (int column = 0; column < blank.length; column++) {
             for (int row = 0; row < blank[0].length; row++) {
                blank[column][row] = "  ";
@@ -127,10 +129,40 @@ public class MemorySequence {
       userInputAns = userAns;
    }
 
-   public void setScore(int score) {
-      this.score = score;
+   private static void calcScore() {
+      if (userInputAns.size() == 0) {
+         score = 0;
+      } else {
+         if (defaultSeq) {
+            score = userInputAns.size() - 1;
+         } else {
+            score = (userInputAns.size() - 1) / seqLen;
+         }
+      }
+   }
+
+   public void setSeqLen(int len) {
+      seqLen = len;
+   }
+
+   public static void clearSeqList() {
+      sequence.clear();
+   }
+
+   public static void clearAnswerList() {
+      userInputAns.clear();
+   }
+
+   public static void changeSeq() {
+      defaultSeq = false;
    }
    public String toString() {
-      return "";
+      calcScore();
+      String response = "\not quite the sequence, nice try though.\n\n";
+      if(defaultSeq) {
+         return response + "\n\nNice job, you completed sequences up to the length of " + score + "!" + "\n\n";
+      } else {
+         return response + "\n\nNice job, you had a practice session of " + score + " games with the sequence length of " + seqLen + "!" + "\n\n";
+      }
    }
 }

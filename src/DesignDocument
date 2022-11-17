@@ -30,7 +30,9 @@ Box Layout:
         private final String ANSI_BLUE = "\u001B[34m"
         private static ArrayList<String> sequence = new ArrayList<String>()
         private static ArrayList<String> userInputAns = new ArrayList<String>()
-        private int score
+        private static int score
+        private boolean defaultSeq = true
+        private static int seqLen;
 
 
     Constructor:
@@ -55,17 +57,30 @@ Box Layout:
              ** in the memory sequence game I will have to indicate which box is chosen
              ** will also save the sequence so the user can input it
 
-        public boolean gameRunning()    boolean return value
+        gameRunning()    boolean return value
             will return if the game is still running (when the user gets the sequence wrong the game is over and that is when this value is false)
 
-        public static void setScore()   void return value
-            will set the score to the current length of the sequence if the user gets it correct
+        calcScore()   void return value
+            will calculate the score of the player depending on the game mode
 
-        public static void setUserInputAns(ArrayList<String> userAns)      void return type
+        setUserInputAns(ArrayList<String> userAns)      void return type
             will set the sequence that the user enters to the ArrayList called userInputAns
 
+        changeSeq()
+            will set the boolean variable of defaultSeq to false (happens when the user wants to define their own sequence len.)
+            used to help with the calculations of scores
+
+        clearSeqList()
+            will clear the array list sequence
+
+        clearAnswerList()
+            will clear the array list userInputAns
+
+        setSeqLen()
+            will set the length of the sequence
+
         toString()    returns a String
-            **to be decided
+            will return the score of the player (outputs will vary depending on the game mode)
 
 
 Main Runner Class:
@@ -80,11 +95,14 @@ Main Runner Class:
         if they select their own way, they are asked to input the length of the desired sequence and a sequence of that length will be displayed
             will print if they got it correct or not
 
-        if they play competitive they will only be able to play default play (sequence increases by one each round)
+        if they play competitive they will only be able to play default play (sequence increases by one each round + default dimensions)
             they will be able to save their score with their name and get a chance to be in the leaderboard (top 5)
 
 
     methods:
         public static boolean inRange(int num, int lower, int higher)
             will return if the number is in between the lower and higher numbers
+
+        public static void clear()
+            clears the page so the next iteration of the sequence can be shown
 
