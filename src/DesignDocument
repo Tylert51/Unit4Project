@@ -28,6 +28,10 @@ Box Layout:
         private int rows
         private final String ANSI_RESET = "\u001B[0m"
         private final String ANSI_BLUE = "\u001B[34m"
+        private final String ANSI_RED = "\u001B[31m"
+        private final String ANSI_YELLOW = "\u001B[33m"
+        private final String ANSI_CYAN = "\u001B[36m"
+        private final String ANSI_PURPLE = "\u001B[35m"
         private static ArrayList<String> sequence = new ArrayList<String>()
         private static ArrayList<String> userInputAns = new ArrayList<String>()
         private static int score
@@ -81,6 +85,21 @@ Box Layout:
 
         toString()    returns a String
             will return the score of the player (outputs will vary depending on the game mode)
+
+Settings Object
+    instance variables:
+        private String displayChar;
+        private boolean displayNum;
+
+    methods:
+        changeDisplayChar(String displayChar)   void return type
+            change the value of the display character to either the XX's or the actualy number of the box
+
+        changeDisplayNum() void return type
+            will change the displayNum variable to either false or true
+
+
+
 
 
 Main Runner Class:

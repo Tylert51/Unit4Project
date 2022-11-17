@@ -7,7 +7,7 @@ public class MemorySequenceRunner {
         Scanner s = new Scanner(System.in);
         ArrayList<String> answers = new ArrayList<String>();
 
-        System.out.print("Hi, welcome to my memory game!\n\nWould you like to play competitive mode(1) or practice mode(2)? ");
+        System.out.print("\n\nHi, welcome to my memory game!\n\nWould you like to play competitive mode(1) or practice mode(2)?\nEnter 3 to access settings and 4 for instructions on how to play: ");
         String compAns = s.nextLine();
 
         while (!(compAns.equals("1")) && !(compAns.equals("2"))) {
@@ -16,13 +16,13 @@ public class MemorySequenceRunner {
         }
 
         if (compAns.equals("2")) {   //if practice
-            System.out.print("Would you like to play on your own grid dimensions(1) or default(2)? ");
+            System.out.print("Would you like to play on a default 5x5 grid(1) or a custom grid with your own dimensions(2)? ");
             String defaultAns = s.nextLine();
             while (!(defaultAns.equals("1")) && !(defaultAns.equals("2"))) {
-                System.out.print("\nInvalid input\nEnter 1 for custom dimensions and 2 for default: ");
+                System.out.print("\nInvalid input\nEnter 1 default dimensions or 2 for custom: ");
                 defaultAns = s.nextLine();
             }
-            if (defaultAns.equals("1")) {    // if practice + custom dimension
+            if (defaultAns.equals("2")) {    // if practice + custom dimension
                 System.out.print("Enter a number for number of columns and rows (1-9): ");
                 int dimensionAns = Integer.parseInt(s.nextLine());
                 while (!inRange(dimensionAns,1,9)) {

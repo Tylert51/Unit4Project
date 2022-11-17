@@ -158,7 +158,7 @@ public class MemorySequence {
    }
    public String toString() {
       calcScore();
-      String response = "\not quite the sequence, nice try though.\n\n";
+      String response = "\nNot quite the sequence, nice try though.\n\n";
       if(defaultSeq) {
          return response + "\n\nNice job, you completed sequences up to the length of " + score + "!" + "\n\n";
       } else {
