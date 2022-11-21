@@ -8,16 +8,14 @@ public class MemorySequence {
    private int rows;
    private final String DIV_LINE = "|----";
    private final String ANSI_RESET = "\u001B[0m";
-   private final String ANSI_BLUE = "\u001B[34m";
-   private final String ANSI_RED = "\u001B[31m";
-   private final String ANSI_YELLOW = "\u001B[33m";
    private final String ANSI_CYAN = "\u001B[36m";
-   private final String ANSI_PURPLE = "\u001B[35m";
    private static ArrayList<String> sequence = new ArrayList<String>();
    private static ArrayList<String> userInputAns = new ArrayList<String>();
    private static int score;
    private static boolean defaultSeq = true;
    private static int seqLen;
+   private static int randBoxNum;
+   private static int numTimesRan;
 
    public MemorySequence(int c, int r) {
       columns = c;
@@ -113,10 +111,19 @@ public class MemorySequence {
 
       int ranCol = (int) (Math.random() * columns);
       int ranRow = (int) (Math.random() * rows);
-      int boxNum = (ranCol * columns) + ranRow + 1;
-      sequence.add("" + boxNum);
-
-      blank2[ranCol][ranRow] = ANSI_CYAN + "XX" + ANSI_RESET;
+      randBoxNum = (ranCol * columns) + ranRow + 1;
+      sequence.add("" + randBoxNum);
+      String displayChar = "";
+      if (Settings.returnStatus()) {
+         if (randBoxNum < 10) {
+            displayChar = "0" + randBoxNum;
+         } else {
+            displayChar = randBoxNum + "";
+         }
+      } else {
+         displayChar = "XX";
+      }
+      blank2[ranCol][ranRow] = ANSI_CYAN + displayChar + ANSI_RESET;
 
       return printBox(blank2);
    }
@@ -136,7 +143,7 @@ public class MemorySequence {
          if (defaultSeq) {
             score = userInputAns.size() - 1;
          } else {
-            score = (userInputAns.size() - 1) / seqLen;
+            score = numTimesRan - 1;
          }
       }
    }
@@ -156,9 +163,17 @@ public class MemorySequence {
    public static void changeSeq() {
       defaultSeq = false;
    }
+
+   public void updateNumTimesRan(int num) {
+      numTimesRan = num;
+   }
+
    public String toString() {
       calcScore();
       String response = "\nNot quite the sequence, nice try though.\n\n";
+      String answerKey = "Here is the actual sequence: " + sequence;
+      response += "\n\n" + answerKey;
+
       if(defaultSeq) {
          return response + "\n\nNice job, you completed sequences up to the length of " + score + "!" + "\n\n";
       } else {

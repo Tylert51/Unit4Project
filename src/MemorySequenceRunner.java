@@ -6,12 +6,36 @@ public class MemorySequenceRunner {
     public static void main(String[] args) throws InterruptedException {
         Scanner s = new Scanner(System.in);
         ArrayList<String> answers = new ArrayList<String>();
+        clear();
 
-        System.out.print("\n\nHi, welcome to my memory game!\n\nWould you like to play competitive mode(1) or practice mode(2)?\nEnter 3 to access settings and 4 for instructions on how to play: ");
+        System.out.print("\n\nHi, welcome to my memory game!\n\nWould you like to play competitive mode(1) or practice mode(2)?\nEnter (3) to access settings and (4) for instructions on how to play: ");
         String compAns = s.nextLine();
 
+        while (!(compAns.equals("1")) && !(compAns.equals("2")) && !(compAns.equals("3")) && !(compAns.equals("4"))) {
+            System.out.print("\nInvalid input\nEnter 1 for competitive and 2 for practice\n3 for settings and 4 for instructions ");
+            compAns = s.nextLine();
+        }
+
+        if (compAns.equals("3")) {    //if settings
+            Settings setting = new Settings();
+            clear();
+            System.out.println(setting.toString());
+            System.out.print("Type x if you want each box to display XX instead of its number: ");
+            String challengeMode = s.nextLine();
+            setting.changeDisplayChar(challengeMode);
+            clear();
+            System.out.println(setting.toString());
+            Thread.sleep(3500);
+            clear();
+        } else if (compAns.equals("4")) {    //if instructions
+
+        }
+
+        System.out.print("Would you like to play competitive mode(1) or practice mode(2): ");
+        compAns = s.nextLine();
+
         while (!(compAns.equals("1")) && !(compAns.equals("2"))) {
-            System.out.print("\nInvalid input\nEnter 1 for competitive and 2 for practice ");
+            System.out.print("\nInvalid input\nEnter 1 for competitive and 2 for practice: ");
             compAns = s.nextLine();
         }
 
@@ -42,14 +66,18 @@ public class MemorySequenceRunner {
                     setLen = s.nextLine();
 
                 }
-                if (setLen.equals("1")) {     //if own seq.len. + custom dimensions
+                if (setLen.equals("1")) {     //if practice + custom dimensions + own sequence
                     MemorySequence.changeSeq();
                     System.out.print("Enter your length for the sequence: ");
                     int seqLen = Integer.parseInt(s.nextLine());
                     gameCustom.setSeqLen(seqLen);
+                    int counter = 0;
+                    clear();
 
                     while (MemorySequence.gameRunning()) {
-
+                        clear();
+                        MemorySequence.clearAnswerList();
+                        MemorySequence.clearSeqList();
                         for (int rounds = 1; rounds <= seqLen; rounds++) {
                             System.out.println(gameCustom.lightBox());
                             Thread.sleep(2000);
@@ -65,12 +93,16 @@ public class MemorySequenceRunner {
                             answers.add(s.nextLine());
                         }
                         MemorySequence.setUserInputAns(answers);
+                        counter++;
                     }
+                    gameCustom.updateNumTimesRan(counter);
                     System.out.println(gameCustom.toString());
 
-                } else {  // if default seq  +  custom dimensions
+                } else {  // if practice + custom dimensions + default seq
+                    clear();
                     int counter = 1;
                     while (MemorySequence.gameRunning()) {
+                        clear();
                         MemorySequence.clearSeqList();
                         MemorySequence.clearAnswerList();
                         for (int rounds = 1; rounds <= counter; rounds++) {
@@ -106,14 +138,18 @@ public class MemorySequenceRunner {
                     setLen = s.nextLine();
 
                 }
-                if (setLen.equals("1")) {  // if own seq. length + default dimensions
+                if (setLen.equals("1")) {  // if practice + default dimensions + own seq. length
                     MemorySequence.changeSeq();
                     System.out.print("Enter your length for the sequence: ");
                     int seqLen = Integer.parseInt(s.nextLine());
                     gameDefault.setSeqLen(seqLen);
+                    int counter = 0;
+                    clear();
 
                     while (MemorySequence.gameRunning()) {
-
+                        clear();
+                        MemorySequence.clearSeqList();
+                        MemorySequence.clearAnswerList();
                         for (int rounds = 1; rounds <= seqLen; rounds++) {
                             System.out.println(gameDefault.lightBox());
                             Thread.sleep(2000);
@@ -129,12 +165,16 @@ public class MemorySequenceRunner {
                             answers.add(s.nextLine());
                         }
                         MemorySequence.setUserInputAns(answers);
+                        counter++;
+                        gameDefault.updateNumTimesRan(counter);
                     }
                     System.out.println(gameDefault.toString());
 
-                } else {    //if default seq + default dimensions
+                } else {    //if practice + default dimensions + default seq
+                    clear();
                     int counter = 1;
                     while (MemorySequence.gameRunning()) {
+                        clear();
                         MemorySequence.clearSeqList();
                         MemorySequence.clearAnswerList();
                         for (int rounds = 1; rounds <= counter; rounds++) {
@@ -165,9 +205,10 @@ public class MemorySequenceRunner {
             System.out.println(gameComp.numBox() + "\n");
             System.out.print("Press enter when you are ready");
             s.nextLine();
-
+            clear();
             int counter = 1;
             while (MemorySequence.gameRunning()) {
+                clear();
                 MemorySequence.clearSeqList();
                 MemorySequence.clearAnswerList();
                 for (int rounds = 1; rounds <= counter; rounds++) {
@@ -189,7 +230,6 @@ public class MemorySequenceRunner {
             }
             System.out.println(gameComp.toString());
         }
-
     }
 
 
@@ -205,6 +245,4 @@ public class MemorySequenceRunner {
                 Runtime.getRuntime().exec("clear");
         } catch (IOException | InterruptedException ex) {}
     }
-
 }
-

@@ -27,16 +27,13 @@ Box Layout:
         private int columns
         private int rows
         private final String ANSI_RESET = "\u001B[0m"
-        private final String ANSI_BLUE = "\u001B[34m"
-        private final String ANSI_RED = "\u001B[31m"
-        private final String ANSI_YELLOW = "\u001B[33m"
         private final String ANSI_CYAN = "\u001B[36m"
-        private final String ANSI_PURPLE = "\u001B[35m"
         private static ArrayList<String> sequence = new ArrayList<String>()
         private static ArrayList<String> userInputAns = new ArrayList<String>()
         private static int score
         private boolean defaultSeq = true
-        private static int seqLen;
+        private static int seqLen
+        private static int numTimesRan
 
 
     Constructor:
@@ -83,23 +80,37 @@ Box Layout:
         setSeqLen()
             will set the length of the sequence
 
+        updateNumTimesRan(int num)
+            will update the variable numTimesRan to the variable num
+                for when the user has a set sequence length
+
         toString()    returns a String
             will return the score of the player (outputs will vary depending on the game mode)
 
 Settings Object
     instance variables:
-        private String displayChar;
-        private boolean displayNum;
+        private static boolean displayNum
+        private final String ANSI_BLUE = "\u001B[34m"
+        private final String ANSI_RED = "\u001B[31m"
+        private final String ANSI_RESET = "\u001B[0m"
+
+    Constructor:
+        Settings()
+            just instantiates the object
 
     methods:
         changeDisplayChar(String displayChar)   void return type
-            change the value of the display character to either the XX's or the actualy number of the box
+            change the value of the display character to either the XX's or the actual number of the box
+            will also change the displayNum variable to either false or true
 
-        changeDisplayNum() void return type
-            will change the displayNum variable to either false or true
+        returnStatus()    boolean return type
+            will return the status of displayNum
 
+        toString()    String return type
+            will print out the settings along with the value of displayNum
 
-
+        printInstructions()   String
+            will print the instructions of the game
 
 
 Main Runner Class:
