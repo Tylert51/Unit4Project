@@ -9,21 +9,23 @@ MemorySequence Object:
 
 Box Layout:
 
-    |----|----|----|----|
-    | 01 | 02 | 03 | 04 |
-    |----|----|----|----|
-    | 05 | 06 | 07 | 08 |
-    |----|----|----|----|
-    | 09 | 10 | 11 | 12 |
-    |----|----|----|----|
-    | 13 | 14 | 15 | 16 |
-    |----|----|----|----|
+    |----|----|----|----|----|
+    | 01 | 02 | 03 | 04 | 05 |
+    |----|----|----|----|----|
+    | 06 | 07 | 08 | 09 | 10 |
+    |----|----|----|----|----|
+    | 11 | 12 | 13 | 14 | 15 |
+    |----|----|----|----|----|
+    | 16 | 17 | 18 | 19 | 20 |
+    |----|----|----|----|----|
+    | 21 | 22 | 23 | 24 | 25 |
+    |----|----|----|----|----|
 
 
     InstanceVariables:
         private String[][] boxNumbers
         private String[][] blank
-        private final String DIV_LINE = "|----|----|----|----|"
+        private final String DIV_LINE = "|----"
         private int columns
         private int rows
         private final String ANSI_RESET = "\u001B[0m"
@@ -33,7 +35,10 @@ Box Layout:
         private static int score
         private boolean defaultSeq = true
         private static int seqLen
+        private static int randBoxNum
         private static int numTimesRan
+        private static int currentHighScore = 0
+        private static boolean comp = false
 
 
     Constructor:
@@ -63,6 +68,7 @@ Box Layout:
 
         calcScore()   void return value
             will calculate the score of the player depending on the game mode
+            will also save the current high score if the game mode is competitive
 
         setUserInputAns(ArrayList<String> userAns)      void return type
             will set the sequence that the user enters to the ArrayList called userInputAns
@@ -83,6 +89,12 @@ Box Layout:
         updateNumTimesRan(int num)
             will update the variable numTimesRan to the variable num
                 for when the user has a set sequence length
+
+        gameIsComp()
+            will update the variable of comp to true if it is called
+
+        returnHighScore()
+            returns the current high score
 
         toString()    returns a String
             will return the score of the player (outputs will vary depending on the game mode)
@@ -114,19 +126,26 @@ Settings Object
 
 
 Main Runner Class:
-    ask user if they want to play competitive or practice mode
-        if play practice, they can choose between setting the size of their own grid or using a default 4x4 grid
+    ask user if they want to play competitive or practice mode or access settings or instructions
+        if play practice, they can choose between setting the size of their own grid or using a default 5x5 grid
             they will also be met with a question if they want to practice a certain sequence length or just play the default way
         will display the grid with all the numbers in them to show the user which box is which
         then display a sequence with a length of one (default way)
         if they get it correct, the sequence length increases by one (default way)
             will print their score at the end
-            will print their personal best as well based on the name
         if they select their own way, they are asked to input the length of the desired sequence and a sequence of that length will be displayed
-            will print if they got it correct or not
+            their score will be how many sequences they complete with their desired length
 
         if they play competitive they will only be able to play default play (sequence increases by one each round + default dimensions)
-            they will be able to save their score with their name and get a chance to be in the leaderboard (top 5)
+            the answers will appear once you get the sequence wrong for all game modes and it will display your score
+            it will also ask if you want to play again saving your score to see if you ever beat it
+                it will constantly remind you of your running high score as long as the program is running
+
+        if settings is chosen
+            they will be able to choose what they want to display in the box (XX's or the number of the tiles)
+
+        if instructions are chosen
+            will display the instructions of the game and how to play
 
 
     methods:
@@ -135,4 +154,3 @@ Main Runner Class:
 
         public static void clear()
             clears the page so the next iteration of the sequence can be shown
-

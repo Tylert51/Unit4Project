@@ -15,28 +15,33 @@ public class MemorySequenceRunner {
             System.out.print("\nInvalid input\nEnter 1 for competitive and 2 for practice\n3 for settings and 4 for instructions ");
             compAns = s.nextLine();
         }
+        Settings setting = new Settings();
 
-        if (compAns.equals("3")) {    //if settings
-            Settings setting = new Settings();
-            clear();
-            System.out.println(setting.toString());
-            System.out.print("Type x if you want each box to display XX instead of its number: ");
-            String challengeMode = s.nextLine();
-            setting.changeDisplayChar(challengeMode);
-            clear();
-            System.out.println(setting.toString());
-            Thread.sleep(3500);
-            clear();
-        } else if (compAns.equals("4")) {    //if instructions
+        while (compAns.equals("3") || compAns.equals("4")) {   //if they keep on wanting to access settings and instructions
+            if (compAns.equals("3")) {    //if settings
+                clear();
+                System.out.println(setting.toString());
+                System.out.print("Type x if you want each box to display XX instead of its number: ");
+                String challengeMode = s.nextLine();
+                setting.changeDisplayChar(challengeMode);
+                clear();
+                System.out.println(setting.toString());
+                Thread.sleep(3500);
+                clear();
+            } else {
+                clear();
+                setting.printInstructions();
+                System.out.print("Press enter when you understand everything ");
+                s.nextLine();
+                clear();
+            }
 
-        }
-
-        System.out.print("Would you like to play competitive mode(1) or practice mode(2): ");
-        compAns = s.nextLine();
-
-        while (!(compAns.equals("1")) && !(compAns.equals("2"))) {
-            System.out.print("\nInvalid input\nEnter 1 for competitive and 2 for practice: ");
+            System.out.print("Would you like to play competitive mode(1) or practice mode(2)?\nEnter (3) to access settings and (4) for instructions: ");
             compAns = s.nextLine();
+            while (!(compAns.equals("1")) && !(compAns.equals("2")) && !(compAns.equals("3")) && !(compAns.equals("4"))) {
+                System.out.print("\nInvalid input\nEnter 1 for competitive and 2 for practice\n3 for settings and 4 for instructions ");
+                compAns = s.nextLine();
+            }
         }
 
         if (compAns.equals("2")) {   //if practice
@@ -201,42 +206,65 @@ public class MemorySequenceRunner {
 
         } else {   // if competitive
             MemorySequence gameComp = new MemorySequence();
-            System.out.println("\nHere is the layout of your grid:\n");
-            System.out.println(gameComp.numBox() + "\n");
-            System.out.print("Press enter when you are ready");
-            s.nextLine();
-            clear();
-            int counter = 1;
-            while (MemorySequence.gameRunning()) {
+            gameComp.gameIsComp();
+            String playAgain = "y";
+            while (playAgain.equals("y")) {
                 clear();
-                MemorySequence.clearSeqList();
+                playAgain = "n";
+                System.out.println("\nHere is the layout of your grid:\n");
+                System.out.println(gameComp.numBox() + "\n");
+                System.out.print("Press enter when you are ready");
+                s.nextLine();
+                clear();
+                int counter = 1;
                 MemorySequence.clearAnswerList();
-                for (int rounds = 1; rounds <= counter; rounds++) {
-                    System.out.println(gameComp.lightBox());
-                    Thread.sleep(2000);
+                MemorySequence.clearSeqList();
+                while (MemorySequence.gameRunning()) {
                     clear();
-                    System.out.println(gameComp.emptyBox());
-                    Thread.sleep(2000);
-                    clear();
-                }
-                System.out.print(gameComp.numBox()+ "\n\n" + "Enter the box number of the first tile that lit up: ");
-                answers.add(s.nextLine());
-                for (int rounds = 2; rounds <= counter; rounds++) {
-                    System.out.print("Next number: ");
+                    MemorySequence.clearSeqList();
+                    MemorySequence.clearAnswerList();
+                    for (int rounds = 1; rounds <= counter; rounds++) {
+                        System.out.println(gameComp.lightBox());
+                        Thread.sleep(2000);
+                        clear();
+                        System.out.println(gameComp.emptyBox());
+                        Thread.sleep(2000);
+                        clear();
+                    }
+                    System.out.print(gameComp.numBox() + "\n\n" + "Enter the box number of the first tile that lit up: ");
                     answers.add(s.nextLine());
+                    for (int rounds = 2; rounds <= counter; rounds++) {
+                        System.out.print("Next number: ");
+                        answers.add(s.nextLine());
+                    }
+                    MemorySequence.setUserInputAns(answers);
+                    counter++;
                 }
-                MemorySequence.setUserInputAns(answers);
-                counter++;
+                System.out.println(gameComp.toString());
+                System.out.print("You have a current high score of " + gameComp.returnHighScore() + "!\n\nWould you like to play again(y): ");
+                playAgain = s.nextLine();
+
             }
-            System.out.println(gameComp.toString());
+
         }
+
     }
 
 
+    /**
+     * inRange method for the MemorySequenceRunner class. This method will return a boolean and just compares the number, to 2 other values and check if the number is between those 2 numbers
+     * @param num an integer representing the number you want to compare
+     * @param lower an integer representing the lower bound
+     * @param higher an integer representing the upper bound
+     * @return a boolean that tells if the number is within the lower and upper bound
+     */
     public static boolean inRange(int num, int lower, int higher) {
         return (num >= lower) && (num <= higher);
     }
 
+    /**
+     * clear method for the MemorySequenceRunner class. This method will return void and clears the screen for the following text when called
+     */
     public static void clear() {
         try {
             if (System.getProperty("os.name").contains("Windows"))
