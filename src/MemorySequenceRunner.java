@@ -28,7 +28,7 @@ public class MemorySequenceRunner {
                 System.out.println(setting.toString());
                 Thread.sleep(3500);
                 clear();
-            } else {
+            } else {  //if instructions
                 clear();
                 System.out.println(setting.printInstructions());
                 System.out.print("\n\nPress enter when you understand everything ");
