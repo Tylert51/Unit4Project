@@ -30,8 +30,8 @@ public class MemorySequenceRunner {
                 clear();
             } else {
                 clear();
-                setting.printInstructions();
-                System.out.print("Press enter when you understand everything ");
+                System.out.println(setting.printInstructions());
+                System.out.print("\n\nPress enter when you understand everything ");
                 s.nextLine();
                 clear();
             }

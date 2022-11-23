@@ -37,7 +37,13 @@ public class Settings {
      * @return a String that has all the instructions stored in it
      */
     public String printInstructions() {
-        String instructions = "";
+        String instructions = "This memory will test your ability to memorize and recall a sequence that is displayed on a grid";
+        instructions += "\nYou can choose between:\n   - a competitive game mode in which there will be a default 5x5 grid and a sequence that starts with 1, and increases in length each round";
+        instructions += "\n      - you will also have the ability to play again and try to beat your high score which will be displayed at the end";
+        instructions += "\n   - or a practice game mode where you can customize certain things like grid dimensions or sequence length";
+        instructions += "\n      - after choosing grid dimensions, you have the option if you would like to play default (sequence increases by 1 each round) or set your own sequence length that doesn't change";
+        instructions += "\nWhenever you fail to complete a sequence, you will be presented with the answer to that sequence and your score (dependant on your game mode)";
+        instructions += "\n\nFor the settings, you can choose if you want the actual number of the box to display on the grid or just an XX (this is more challenging btw)";
         return instructions;
     }
 
