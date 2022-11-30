@@ -2,7 +2,7 @@
  * The settings class represents the settings of the game. Setting has the attribute of whether the tiles will display a number or an x
  */
 public class Settings {
-    private static boolean displayNum = true;
+    private static boolean displayNum;
     private final String ANSI_BLUE = "\u001B[34m";
     private final String ANSI_RED = "\u001B[31m";
     private final String ANSI_RESET = "\u001B[0m";
@@ -10,7 +10,9 @@ public class Settings {
     /**
      * Constructor for the Settings class. This just instantiates and declares the object
      */
-    public Settings() {}
+    public Settings() {
+        displayNum = true;
+    }
 
     /**
      * changeDisplayChar method for the Settings class. This methods will return void and set displayNum either to true or false depending on the input

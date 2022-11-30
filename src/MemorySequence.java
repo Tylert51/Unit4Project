@@ -22,15 +22,15 @@ public class MemorySequence {
    private final String DIV_LINE = "|----";
    private final String ANSI_RESET = "\u001B[0m";
    private final String ANSI_CYAN = "\u001B[36m";
-   private static ArrayList<String> sequence = new ArrayList<String>();
-   private static ArrayList<String> userInputAns = new ArrayList<String>();
+   private static ArrayList<String> sequence;
+   private static ArrayList<String> userInputAns;
    private static int score;
-   private static boolean defaultSeq = true;
+   private static boolean defaultSeq;
    private static int seqLen;
    private static int randBoxNum;
    private static int numTimesRan;
-   private static int currentHighScore = 0;
-   private static boolean comp = false;
+   private static int currentHighScore;
+   private static boolean comp;
 
    /**
     * Constructor for the MemorySequence class. This creates a new instance of MemorySequence and populates the lists of boxNumbers and blank with their respective values
@@ -42,6 +42,14 @@ public class MemorySequence {
    public MemorySequence(int c, int r) {
       columns = c;
       rows = r;
+      defaultSeq = true;
+      comp = false;
+      currentHighScore = 0;
+
+      sequence = new ArrayList<String>();
+      userInputAns = new ArrayList<String>();
+
+
       String[][] boxNumbers = new String[c][r];
       int count = 1;
       for (int column = 0; column < boxNumbers.length; column++) {
