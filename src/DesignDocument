@@ -30,8 +30,8 @@ Box Layout:
         private int rows
         private final String ANSI_RESET = "\u001B[0m"
         private final String ANSI_CYAN = "\u001B[36m"
-        private static ArrayList<String> sequence = new ArrayList<String>()
-        private static ArrayList<String> userInputAns = new ArrayList<String>()
+        private static ArrayList<String> sequence
+        private static ArrayList<String> userInputAns
         private static int score
         private boolean defaultSeq
         private static int seqLen
